@@ -8,9 +8,6 @@ import {
 } from './pages'
 
 export default function App() {
-  const a = "Hello"
-  console.log(a);
-
   return (
     <BrowserRouter>
       <Routes>
