@@ -1,0 +1,24 @@
+import { SearchBar, MyLink, CompanyLogo } from './'
+
+export default function NavBar() {
+  console.log("render navbar");
+
+  return (
+    <header className='flex shadow-md p-3 bg-slate-200 justify-center items-center'>
+      <div className='flex w-full max-w-6xl justify-between items-center'>
+        <CompanyLogo />
+        <SearchBar
+          placeholder='Search..'
+          className='mx-auto'
+        />
+
+        <nav className='flex'>
+          <MyLink to='/' className='hidden md:block'>Home</MyLink>
+          <MyLink to='/about' className='hidden md:block'>About</MyLink>
+          <MyLink to='/sign-in'
+            className='px-4 ml-2 bg-blue-600 rounded-lg text-white hover:no-underline hover:bg-blue-500'>Sign In</MyLink>
+        </nav>
+      </div>
+    </header>
+  )
+}
