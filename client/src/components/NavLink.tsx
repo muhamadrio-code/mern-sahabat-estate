@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { forwardRef } from 'react'
 import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from '../utils/utils'
-import { Link, LinkProps } from 'react-router-dom'
+import { Link, LinkProps,  } from 'react-router-dom'
 
 
 const navLinkVariants = cva(
@@ -19,12 +19,11 @@ const navLinkVariants = cva(
     }
   }
 )
-
+ 
 interface NavLinkProps extends LinkProps, VariantProps<typeof navLinkVariants> {}
 
-const NavLink: FC<NavLinkProps> = ({ className, size, ...props }) => {
-  <div className='text-violet-950 text-lg'></div>
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(({ className, size, ...props }) => {
   return <Link className={cn(navLinkVariants({ className, size }))} {...props}/> 
-}
+})
  
 export { NavLink, navLinkVariants };
