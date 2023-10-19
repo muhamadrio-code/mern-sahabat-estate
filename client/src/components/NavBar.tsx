@@ -5,7 +5,7 @@ export default function NavBar() {
 
   return (
     <header className='flex shadow-md p-3 bg-slate-200 justify-center items-center'>
-      <div className='flex w-full max-w-6xl justify-between items-center'>
+      <div className='flex w-full max-w-6xl justify-between items-center px-3'>
         <CompanyLogo />
         <SearchBar
           placeholder='Search..'

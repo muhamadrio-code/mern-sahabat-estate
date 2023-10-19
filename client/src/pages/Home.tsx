@@ -1,5 +1,9 @@
+import { HeroText } from "../components/HeroText";
+
 export default function Home() {
   return (
-    <div>Home</div>
+    <div className="flex justify-center">
+      <HeroText />
+    </div>
   )
 }

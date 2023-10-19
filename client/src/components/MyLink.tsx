@@ -11,10 +11,13 @@ const navLinkVariants = cva(
       size: {
         default: 'text-base',
         sm: 'text-sm',
+        lg: 'text-lg',
+        xl: 'text-xl',
       },
       weight: {
         semiBold: "font-semibold",
-        bold: "font-bold"
+        bold: "font-bold",
+        extraBold: "font-extrabold"
       }
     },
     defaultVariants: {
@@ -25,8 +28,8 @@ const navLinkVariants = cva(
  
 interface MyLinkProps extends LinkProps, VariantProps<typeof navLinkVariants> {}
 
-const MyLink : FC<MyLinkProps> = ({ className, size, ...props }) => {
-  return <Link className={cn(navLinkVariants({ className, size }))} {...props}/> 
+const MyLink : FC<MyLinkProps> = ({ className, weight, size, ...props }) => {
+  return <Link className={cn(navLinkVariants({ className, size, weight }))} {...props}/> 
 }
  
 export { MyLink, navLinkVariants };
