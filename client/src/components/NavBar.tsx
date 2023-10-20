@@ -16,7 +16,7 @@ export default function NavBar() {
           <MyLink to='/' className='hidden md:block'>Home</MyLink>
           <MyLink to='/about' className='hidden md:block'>About</MyLink>
           <MyLink to='/sign-in'
-            className='px-4 ml-2 bg-blue-600 rounded-lg text-white hover:no-underline hover:bg-blue-500'>Sign In</MyLink>
+            className='px-4 ml-2 bg-primary rounded-lg text-white hover:no-underline hover:bg-primary-50'>Sign In</MyLink>
         </nav>
       </div>
     </header>
