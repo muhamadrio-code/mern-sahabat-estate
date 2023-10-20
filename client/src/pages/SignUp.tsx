@@ -4,8 +4,8 @@ import { MyLink } from "../components";
 export default function SignUp() {
   const inputClassStyle = "p-3 rounded-lg w-full"
   return (
-  <div className="sm:w-96 mt-12 md:w-2/6 p-4 m-auto flex-col min-h-min flex justify-center items-center gap-6">
-    <h1 className="text-2xl font-semibold">Sign Up</h1>
+  <div className="sm:w-[32rem] mt-4 p-4 m-auto flex-col min-h-min flex justify-center items-center gap-6">
+    <h1 className="text-2xl font-semibold p-4">Sign Up</h1>
     <Form className="w-full m-auto flex-col min-h-min flex justify-center items-center gap-5">
       <input id='username' type="text" name="username" placeholder="username" className={inputClassStyle} />
       <input id='email' type="email" name="email" placeholder="email" className={inputClassStyle} />
