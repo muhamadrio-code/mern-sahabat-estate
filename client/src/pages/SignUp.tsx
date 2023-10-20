@@ -13,7 +13,7 @@ export default function SignUp() {
       <button type="submit" className="bg-primary hover:bg-primary-50  w-full py-3 rounded-lg text-white font-semibold">Sign up</button>
     </Form>
     <h4 className="mr-auto">
-      Have an account? <MyLink to='signin' className="text-secondary">Sign in</MyLink>
+      Have an account? <MyLink relative="path" to='../signin' className="text-secondary">Sign in</MyLink>
     </h4>
   </div>
   )
