@@ -10,7 +10,7 @@ const signupController = async (req, res, next) => {
     .then(() => {
       res.status(201)
       res.json({
-        status: 'ok',
+        success: true,
         message: "User created successfully"
       })
     }).catch((e) => {
