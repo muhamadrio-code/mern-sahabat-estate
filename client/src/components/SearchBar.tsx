@@ -10,12 +10,10 @@ interface SearchBarComponentProps extends FormProps, VariantProps<typeof searchB
 }
 
 export const SearchBar: FC<SearchBarComponentProps> = ({ className, placeholder, ...props }) => {
-  const location = useLocation()
-  const searchTerm = location.search
-  const currentSearchTerm = searchTerm.slice(searchTerm.indexOf('=') + 1)
+ 
   return (
     <Form method="get" action='/search' className={cn(searchBarVariants({ className }))} {...props}>
-      <input name="id" className='focus:outline-none bg-transparent text-sm w-full' defaultValue={currentSearchTerm}
+      <input name="q" className='focus:outline-none bg-transparent text-sm w-full' 
         placeholder={placeholder} autoComplete="off" />
       <button type="submit"
         className='cursor-pointer ml-auto h-11 w-12 text-center text-slate-600 flex justify-center items-center hover:text-slate-400'>
