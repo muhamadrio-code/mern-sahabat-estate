@@ -26,7 +26,7 @@ const navLinkVariants = cva(
   }
 )
  
-interface MyLinkProps extends LinkProps, VariantProps<typeof navLinkVariants> {}
+type MyLinkProps = LinkProps & VariantProps<typeof navLinkVariants>
 
 const MyLink : FC<MyLinkProps> = ({ className, weight, size, ...props }) => {
   return <Link className={cn(navLinkVariants({ className, size, weight }))} {...props}/> 
