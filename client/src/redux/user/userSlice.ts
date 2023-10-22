@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { User } from '../../models/User'
 
 
-interface UserState {
+export interface UserState {
   currentUser: User | null
 }
 
@@ -16,7 +16,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action: PayloadAction<User>) => {
-      console.log(state.currentUser);
       state.currentUser = action.payload
     }
   }
