@@ -1,6 +1,5 @@
 import { Form, useActionData } from "react-router-dom";
-import { MyLink, LoadingButton } from "../components";
-
+import { MyLink, LoadingButton, OAuth } from "../components";
 
 export default function SignUp() {
   const error: Error | undefined = useActionData() as Error
@@ -12,7 +11,8 @@ export default function SignUp() {
         <input id='username' type="text" name="username" placeholder="username" className={inputClassStyle} required />
         <input id='email' type="email" name="email" placeholder="email" className={inputClassStyle} required />
         <input id='password' type="password" name='password' placeholder="Password" className={inputClassStyle} required minLength={6} />
-        <LoadingButton />
+        <LoadingButton>Sign Up</LoadingButton>
+        <OAuth />
         <p className="text-red-700 tex-sm italic">{error && error?.message}</p>
         <h4 className="mr-auto">
           Have an account? <MyLink relative="path" to='../signin' className="text-secondary">Sign in</MyLink>
