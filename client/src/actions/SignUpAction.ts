@@ -1,9 +1,9 @@
 import { ActionFunction, redirect } from "react-router-dom";
-import { RequestBody, ResponseBody } from "../utils/utils";
+import { AuthRequestBody, ResponseBody } from "../utils/utils";
 
 export const signUpAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const body: RequestBody = {
+  const body: AuthRequestBody = {
     username: formData.get('username'),
     email: formData.get('email'),
     password: formData.get('password'),

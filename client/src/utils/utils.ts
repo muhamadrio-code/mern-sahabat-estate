@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs))
 }
 
-export type RequestBody = {
+export type AuthRequestBody = {
   username?: FormDataEntryValue | null,
   email: FormDataEntryValue | null,
   password: FormDataEntryValue | null,
