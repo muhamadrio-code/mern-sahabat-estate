@@ -9,12 +9,13 @@ import {
   Search,
 } from './pages'
 import { signUpAction } from './actions/SignUpAction'
+import { signInAction } from './actions/SignInAction'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
-      <Route path="signin" element={<SignIn />} />
+      <Route path="signin" element={<SignIn />} action={signInAction} />
       <Route path="signup" element={<SignUp />} 
         action={signUpAction}
       />

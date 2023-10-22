@@ -15,7 +15,7 @@ export default function NavBar() {
         <nav className='flex'>
           <MyLink to='/' className='hidden md:block'>Home</MyLink>
           <MyLink to='/about' className='hidden md:block'>About</MyLink>
-          <MyLink to='/sign-in'
+          <MyLink to='/signin'
             className='px-4 ml-2 bg-primary rounded-lg text-white hover:no-underline hover:bg-primary-50'>Sign In</MyLink>
         </nav>
       </div>
