@@ -1,5 +1,5 @@
 import { Form, Navigate, useActionData } from "react-router-dom";
-import { MyLink, LoadingButton } from "../components";
+import { MyLink, LoadingButton, OAuth } from "../components";
 import { setCurrentUser } from "../redux/user/userSlice";
 import { User } from "../models/User";
 import { useAppDispatch } from "../hooks/hooks";
@@ -39,6 +39,7 @@ export default function SignIn() {
         <input id='email' type="email" name="email" placeholder="email" className={inputClassStyle} required />
         <input id='password' type="password" name='password' placeholder="Password" className={inputClassStyle} required minLength={6} />
         <LoadingButton>Sign In</LoadingButton>
+        <OAuth />
         {isLoginSuccess ? <Navigate to='/' /> : <p className="text-red-500 tex-sm italic mr-auto">{errorMessage}</p>}
         <h4 className="mr-auto">
           Don't have an account? <MyLink relative="path" to='../signup' className="text-secondary">Sign up</MyLink>
