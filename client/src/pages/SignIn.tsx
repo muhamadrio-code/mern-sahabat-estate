@@ -4,32 +4,35 @@ import { setCurrentUser } from "../redux/user/userSlice";
 import { User } from "../models/User";
 import { useAppDispatch } from "../hooks/hooks";
 
-type BaseResponse = {
+type SignInResponse = {
   success: boolean
+} & (SuccessResponse | FailedResponse)
+
+type SuccessResponse = {
+  success: true
+  data: { user: User }
 }
-type SuccessResponse = BaseResponse & {
-  data: User
-}
-type FailedResponse = BaseResponse & {
+type FailedResponse = {
+  success: false
   message: string
 }
 
 const useSignIn = () => {
-  const actionData = useActionData()
+  const actionData = useActionData() as SignInResponse
   const dispatch = useAppDispatch()
 
-  if ((actionData as SuccessResponse)?.data) {
-    const data = actionData as SuccessResponse
-    dispatch(setCurrentUser(data.data as User))
+  if (actionData?.success) {
+    dispatch(setCurrentUser(actionData.data.user))
   }
 
-  return actionData as BaseResponse
+  return actionData
 }
 
 export default function SignIn() {
-  const data = useSignIn() as BaseResponse
-  const isLoginSuccess = (data as SuccessResponse)?.success
-  const errorMessage = (data as FailedResponse)?.message
+  const data = useSignIn() as SignInResponse
+  const isLoginSuccess = data?.success
+  const errorMessage = !data?.success && data?.message
+
   const inputClassStyle = "p-3 rounded-lg w-full"
 
   return (
