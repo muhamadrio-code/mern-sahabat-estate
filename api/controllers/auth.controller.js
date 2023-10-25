@@ -59,7 +59,7 @@ const getUserByEmail = async (email) => {
   const user = await User.findOne({ email })
   let error;
   if (!user) error = errorHandler(404, "User Not Found")
-  return { user: user._doc, error }
+  return { user: user?._doc, error }
 }
 
 const comparePasswordSync = (password, passwordToCompare) => {
