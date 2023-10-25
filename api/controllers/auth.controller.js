@@ -40,7 +40,8 @@ const googleSigninController = async (req, res, next) => {
     }
 
     const accessToken = createAccessToken({ id: validUser._id })
-    signInSuccess(res, { user: validUser, accessToken })
+    const { password: pass, ...rest } = validUser
+    signInSuccess(res, { user: rest, accessToken })
   } catch (error) {
     next(error)
   }
@@ -51,16 +52,14 @@ const signUp = async ({ username, email, password, avatar }) => {
   const newUser = new User(
     { username, email, password: hashedPassword, avatar }
   )
-  const { password: pass, ...rest} = await newUser.save()
-  return rest
+  return await newUser.save()
 }
 
 const getUserByEmail = async (email) => {
   const user = await User.findOne({ email })
   let error;
   if (!user) error = errorHandler(404, "User Not Found")
-  const { password: pass, ...rest} = user._doc
-  return { user: rest, error }
+  return { user: user._doc, error }
 }
 
 const comparePasswordSync = (password, passwordToCompare) => {
@@ -82,7 +81,7 @@ const signInWithEmail = async ({ email, password }) => {
   if (!isValid) throw credentialError
 
   const accessToken = createAccessToken({ id: user._id})
-  const { password: pass, ...rest } = user._doc
+  const { password: pass, ...rest } = user
 
   return { user: rest, accessToken }
 }
