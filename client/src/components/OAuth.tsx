@@ -3,11 +3,14 @@ import { firebaseApp } from '../firebae'
 import { cn } from '../utils/utils'
 import { buttonVariants } from './LoadingButton'
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
-
+import { useAppDispatch } from '../hooks/hooks'
+import { setCurrentUser } from '../redux/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 
 export const OAuth = () => {
-  
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const handleGoogleSignIn = useCallback(
     async () => {
       try {
@@ -22,8 +25,9 @@ export const OAuth = () => {
           },
           body: JSON.stringify({ name: displayName, email, photo: photoURL })
         })
-        const data = await res.json() 
-        console.log(data);
+        const responseJson = await res.json()
+        dispatch(setCurrentUser(responseJson.data.user))
+        navigate('/')
       } catch (error) {
         console.error("Could not sign in with google", error);
       }

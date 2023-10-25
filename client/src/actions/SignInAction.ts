@@ -1,5 +1,21 @@
-import { ActionFunction } from "react-router-dom";
+import { ActionFunction, redirect } from "react-router-dom";
 import { AuthRequestBody } from "../utils/utils";
+import { store } from "../redux/store";
+import { setCurrentUser } from "../redux/user/userSlice";
+import { User } from "../models/User";
+
+type SignInResponse = {
+  success: boolean
+} & (SuccessResponse | FailedResponse)
+
+type SuccessResponse = {
+  success: true
+  data: { user: User }
+}
+type FailedResponse = {
+  success: false
+  message: string
+}
 
 export const signInAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -16,8 +32,16 @@ export const signInAction: ActionFunction = async ({ request }) => {
       },
       body: JSON.stringify(body)
     })
-    return await response.json()
-  } catch (e) {
-    return { status: false, message: "Something went wrong" }
+
+    const result: SignInResponse = await response.json()
+
+    if(result.success) {
+      store.dispatch(setCurrentUser(result.data.user))
+      return redirect('/')
+    } 
+    
+    return new Error(result.message)
+  } catch (error) {
+    return error
   }
 }
