@@ -32,7 +32,7 @@ const googleSigninController = async (req, res, next) => {
   const { user, error: userNotFoundError } = await getUserByEmail(email)
   let validUser = user;
   const username = email.slice(0, email.indexOf('@'))
-  
+
   try {
     if(userNotFoundError) {
       const password = Math.random().toString(36).slice(-10)
@@ -51,14 +51,16 @@ const signUp = async ({ username, email, password, avatar }) => {
   const newUser = new User(
     { username, email, password: hashedPassword, avatar }
   )
-  return await newUser.save()
+  const { password: pass, ...rest} = await newUser.save()
+  return rest
 }
 
 const getUserByEmail = async (email) => {
   const user = await User.findOne({ email })
   let error;
   if (!user) error = errorHandler(404, "User Not Found")
-  return { user, error }
+  const { password: pass, ...rest} = user._doc
+  return { user: rest, error }
 }
 
 const comparePasswordSync = (password, passwordToCompare) => {
@@ -81,6 +83,7 @@ const signInWithEmail = async ({ email, password }) => {
 
   const accessToken = createAccessToken({ id: user._id})
   const { password: pass, ...rest } = user._doc
+
   return { user: rest, accessToken }
 }
 
