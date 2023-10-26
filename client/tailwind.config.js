@@ -10,6 +10,7 @@ export default {
         secondary: "rgb(29 78 216)",
         primary: {
           DEFAULT: "rgb(51 65 85)",
+          variant: "rgb(248 250 252)",
           50: "rgb(71 85 105)"
         }
       },
