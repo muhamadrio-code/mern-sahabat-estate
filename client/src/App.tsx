@@ -22,7 +22,7 @@ const router = createBrowserRouter(
       />
       <Route path="about" element={<About />} />
       <Route element={<PrivateLayout />} >
-      <Route path="search" element={<Search />} />
+        <Route path="search" element={<Search />} />
         <Route path="profile" element={<Profile />} />
       </Route>
     </Route>

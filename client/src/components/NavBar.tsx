@@ -16,7 +16,7 @@ export default function NavBar() {
         <nav className='flex items-center gap-2'>
           <MyLink to='/' className='hidden md:block'>Home</MyLink>
           <MyLink to='/about' className='hidden md:block'>About</MyLink>
-          <Link to='/profile' className='ml-2'>{
+          <Link to={currentUser ? "/profile" : "/signin"} className='ml-2'>{
             currentUser ? <img src={currentUser.avatar} alt="profile_picture.jpg" className='w-10 h-10 border-2 border-slate-300 rounded-full'/> : <button className='w-full h-full px-4 py-2 font-semibold bg-primary rounded-lg text-white hover:no-underline hover:bg-primary-50'>Sign In</button>
           }</Link>
         </nav>
