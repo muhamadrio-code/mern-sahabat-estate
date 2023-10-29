@@ -17,9 +17,12 @@ export const userSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action: PayloadAction<User | null>) => {
       state.currentUser = action.payload
-    }
+    },
+    updateUserAvatar: (state, action: PayloadAction<string>) => {
+      state.currentUser = { ...state.currentUser, avatar: action.payload } as User
+    },
   }
 })
 
-export const { setCurrentUser } = userSlice.actions
+export const { setCurrentUser, updateUserAvatar } = userSlice.actions
 export default userSlice.reducer

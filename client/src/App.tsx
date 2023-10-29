@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, ActionFunction } from 'react-router-dom'
 import { Root } from './components'
 import {
   Home,
@@ -10,6 +10,7 @@ import {
 } from './pages'
 import { signUpAction } from './actions/SignUpAction'
 import { signInAction } from './actions/SignInAction'
+import { profileAction } from './actions/ProfileAction'
 import { PrivateLayout } from './pages/PrivateLayout'
 
 const router = createBrowserRouter(
@@ -23,7 +24,7 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
       <Route element={<PrivateLayout />} >
         <Route path="search" element={<Search />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile />} action={profileAction} />
       </Route>
     </Route>
   )
