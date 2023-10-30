@@ -1,5 +1,5 @@
 import { Form, useActionData, useSubmit } from "react-router-dom"
-import { useState, ChangeEventHandler, FormEventHandler } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useAppSelector } from "../hooks/hooks"
 import { cn } from "../utils/utils"
 import { LoadingButton, buttonVariants } from "../components/LoadingButton"
@@ -19,15 +19,20 @@ export default function Profile() {
   const { currentUser } = useAppSelector(state => state.user)
   const [formData, setFormData] = useState<ProfileFormData>({ id: currentUser?._id } as ProfileFormData)
   const inputClassStyle = "p-3 rounded-lg w-full disabled:bg-primary-variant"
-  const handleOnchange: ChangeEventHandler<HTMLInputElement> = (e) => {
+
+  function handleOnchange(e: ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
     setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }))
   }
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     submit(formData, { method: 'POST' })
     setIsOnEdit(false)
+  }
+
+  function handleDeleteAccount() {
+    submit({ id: currentUser && currentUser._id }, { method: 'DELETE' })
   }
 
   return (
@@ -43,7 +48,7 @@ export default function Profile() {
           </div>
         </Form>
         <div className="text-red-500 text-md flex justify-between items-center cursor-pointer w-full mt-3">
-          <h5>Delete account</h5>
+          <h5 onClick={handleDeleteAccount}>Delete account</h5>
           <h5>Logout</h5>
         </div>
         {error?.ok ? <h4 className="text-sm mt-4 text-start w-full text-green-700">User updated successfully</h4> : <h4 className="text-sm mt-4 text-start w-full text-red-700">{error?.message}</h4>}
