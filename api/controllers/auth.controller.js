@@ -36,7 +36,8 @@ const googleSigninController = async (req, res, next) => {
   try {
     if(userNotFoundError) {
       const password = Math.random().toString(36).slice(-10)
-      validUser = await signUp({ username, email, password, avatar: photo })
+      const document = await signUp({ username, email, password, avatar: photo })
+      validUser = document._doc
     }
 
     const accessToken = createAccessToken({ id: validUser._id })
