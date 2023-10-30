@@ -34,6 +34,10 @@ export default function Profile() {
   function handleDeleteAccount() {
     submit({ id: currentUser && currentUser._id }, { method: 'DELETE' })
   }
+  
+  function handleSignOut() {
+    submit(null, { method: 'POST', action: '/signout' })
+  }
 
   return (
     <section className="w-full">
@@ -49,7 +53,7 @@ export default function Profile() {
         </Form>
         <div className="text-red-500 text-md flex justify-between items-center cursor-pointer w-full mt-3">
           <h5 onClick={handleDeleteAccount}>Delete account</h5>
-          <h5>Logout</h5>
+          <h5 onClick={handleSignOut}>Logout</h5>
         </div>
         {error?.ok ? <h4 className="text-sm mt-4 text-start w-full text-green-700">User updated successfully</h4> : <h4 className="text-sm mt-4 text-start w-full text-red-700">{error?.message}</h4>}
       </div>

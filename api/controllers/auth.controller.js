@@ -27,6 +27,16 @@ const signinController = async (req, res, next) => {
   }
 }
 
+const signoutController = async ( _, res, next) => {
+  try {
+    res.clearCookie("access_token")
+    .status(200)
+    .json({ success: true, message: "User has been logged out" })
+  } catch (error) {
+    next(error)
+  }
+}
+
 const googleSigninController = async (req, res, next) => {
   const { email, photo } = req.body
   const { user, error: userNotFoundError } = await getUserByEmail(email)
@@ -98,4 +108,4 @@ const signInSuccess = (res, { user, accessToken }) => {
     })
 }
 
-export { signupController, signinController, googleSigninController }
+export { signupController, signinController, googleSigninController, signoutController }
